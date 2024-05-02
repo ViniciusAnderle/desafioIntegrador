@@ -116,3 +116,5 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=30')
     }
   })
   .catch(error => console.error('Error:', error));
+
+  
