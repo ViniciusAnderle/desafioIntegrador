@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel COVID-19</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Painel COVID-19</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total de Casos</h5>
+                        <p class="card-text" id="totalCases"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Recuperados</h5>
+                        <p class="card-text" id="totalRecovered"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total de Mortes</h5>
+                        <p class="card-text" id="totalDeaths"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="casesChart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="deathsChart"></canvas>
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Top 10 Países por Total de Casos</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>País</th>
+                            <th>Total de Casos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="topCases"></tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <div id="topCasesChartContainer">
+                    <canvas id="topCasesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
