@@ -51,49 +51,49 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=30')
     });
   })
   .catch(error => console.error('Error:', error));
-  fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
+fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
   .then(response => response.json())
   .then(data => {
-      const topCountries = data.slice(0, 10);
-      const countriesLabels = topCountries.map(country => country.country);
-      const countriesCases = topCountries.map(country => country.cases);
+    const topCountries = data.slice(0, 10);
+    const countriesLabels = topCountries.map(country => country.country);
+    const countriesCases = topCountries.map(country => country.cases);
 
-      const ctx = document.getElementById('topCasesChart').getContext('2d');
-      new Chart(ctx, {
-          type: 'pie',
-          data: {
-              labels: countriesLabels,
-              datasets: [{
-                  label: 'Top 10 Países por Total de Casos',
-                  data: countriesCases,
-                  backgroundColor: [
-                      'rgba(255, 99, 132, 0.8)',
-                      'rgba(54, 162, 235, 0.8)',
-                      'rgba(255, 206, 86, 0.8)',
-                      'rgba(75, 192, 192, 0.8)',
-                      'rgba(153, 102, 255, 0.8)',
-                      'rgba(255, 159, 64, 0.8)',
-                      'rgba(255, 99, 132, 0.8)',
-                      'rgba(54, 162, 235, 0.8)',
-                      'rgba(255, 206, 86, 0.8)',
-                      'rgba(75, 192, 192, 0.8)'
-                  ],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              responsive: true
-          }
-      });
+    const ctx = document.getElementById('topCasesChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: countriesLabels,
+        datasets: [{
+          label: 'Top 10 Países por Total de Casos',
+          data: countriesCases,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(255, 206, 86, 0.8)',
+            'rgba(75, 192, 192, 0.8)',
+            'rgba(153, 102, 255, 0.8)',
+            'rgba(255, 159, 64, 0.8)',
+            'rgba(255, 99, 132, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(255, 206, 86, 0.8)',
+            'rgba(75, 192, 192, 0.8)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
   })
   .catch(error => console.error('Error:', error));
 
-  fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
+fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
   .then(response => response.json())
   .then(data => {
     const topCountries = data.slice(0, 10);
     const chartData = topCountries.map(country => [country.country, country.cases]);
-    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
@@ -117,4 +117,64 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=30')
   })
   .catch(error => console.error('Error:', error));
 
-  
+const map = L.map('map').setView([0, 0], 2);
+
+// Define os limites para o mapa
+const southWest = L.latLng(-90, -180);
+const northEast = L.latLng(90, 180);
+const bounds = L.latLngBounds(southWest, northEast);
+map.setMaxBounds(bounds);
+
+// Se a posição inicial do mapa estiver fora dos limites, ajuste-a para dentro
+map.on('drag', function () {
+  map.panInsideBounds(bounds, { animate: false });
+});
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  minZoom: 2, // Defina o zoom mínimo permitido
+}).addTo(map);
+
+function getColor(cases) {
+  return cases > 1000000 ? '#800026' :
+    cases > 500000 ? '#BD0026' :
+      cases > 200000 ? '#E31A1C' :
+        cases > 100000 ? '#FC4E2A' :
+          cases > 50000 ? '#FD8D3C' :
+            cases > 20000 ? '#FEB24C' :
+              cases > 10000 ? '#FED976' :
+                '#FFEDA0';
+}
+
+fetch('https://disease.sh/v3/covid-19/countries')
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(country => {
+      if (country.countryInfo.lat && country.countryInfo.long) {
+        const lat = country.countryInfo.lat;
+        const long = country.countryInfo.long;
+        const cases = country.cases;
+
+        L.polygon([
+          [lat - 0.5, long - 0.5],
+          [lat + 0.5, long - 0.5],
+          [lat + 0.5, long + 0.5],
+          [lat - 0.5, long + 0.5]
+        ], {
+          color: getColor(cases),
+          fillColor: getColor(cases),
+          fillOpacity: 0.3,
+          interactive: true  // Permite interação mesmo fora do polígono
+        }).addTo(map).bindTooltip(`<b>${country.country}</b><br>Casos: ${cases}`, {
+          direction: 'top',
+          permanent: false,
+          opacity: 0.7,
+          className: 'tooltip',
+          offset: [0, 0],
+          sticky: true,
+          interactive: true,
+          radius: 150  // Aumenta o alcance do tooltip
+        }).openTooltip();
+
+      }
+    });
+  });
