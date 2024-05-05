@@ -33,3 +33,16 @@ h1 {
   height: 20px;
   margin-right: 5px;
 }
+
+
+
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px; /* Altura da imagem */
+  object-fit: cover; /* Para ajustar a imagem dentro do container */
+}
