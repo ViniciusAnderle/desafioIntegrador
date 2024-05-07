@@ -22,7 +22,7 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
   .then(response => response.json())
   .then(data => {
     const casesData = {
-      labels: Object.keys(data.cases),
+      labels: Object.keys(data.cases).map(date => new Date(date).toLocaleDateString('pt-BR')),
       datasets: [{
         label: 'Todos os casos',
         data: Object.values(data.cases),
@@ -31,7 +31,7 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
       }]
     };
     const deathsData = {
-      labels: Object.keys(data.deaths),
+      labels: Object.keys(data.deaths).map(date => new Date(date).toLocaleDateString('pt-BR')),
       datasets: [{
         label: 'Mortes totais',
         data: Object.values(data.deaths),
@@ -51,6 +51,7 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
     });
   })
   .catch(error => console.error('Error:', error));
+
 fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
   .then(response => response.json())
   .then(data => {

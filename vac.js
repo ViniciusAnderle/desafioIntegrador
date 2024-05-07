@@ -1,13 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
-    };
-
     fetch('https://covid.ourworldindata.org/data/vaccinations/vaccinations.json')
         .then(response => response.json())
         .then(data => {
-            // Filtrar os dados do Brasil
             const brazilData = data.find(countryData => countryData.country === 'Brazil');
             if (!brazilData) {
                 console.error('Dados de vacinação para o Brasil não encontrados.');
@@ -22,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const brazilChart = new Chart(brazilChartCtx, {
                 type: 'line',
                 data: {
-                    labels: brazilData.data.map(dayData => formatDate(dayData.date)),
+                    labels: brazilData.data.map(dayData => dayData.date),
                     datasets: [{
                         label: 'Total de Doses Aplicadas no Brasil',
                         data: totalDosesBrazil,
@@ -46,6 +40,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
+
+
+        })
+        .catch(error => console.error('Erro ao buscar dados:', error));
+});
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('https://covid.ourworldindata.org/data/vaccinations/vaccinations.json')
+        .then(response => response.json())
+        .then(data => {
             // Filtrar os dados globais
             const globalData = data.find(countryData => countryData.country === 'World');
             if (!globalData) {
@@ -61,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const globalChart = new Chart(globalChartCtx, {
                 type: 'line',
                 data: {
-                    labels: globalData.data.map(dayData => formatDate(dayData.date)),
+                    labels: globalData.data.map(dayData => dayData.date),
                     datasets: [{
                         label: 'Total de Doses Aplicadas no Mundo',
                         data: totalDosesGlobal,
@@ -84,6 +87,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 }
             });
+
+
+
         })
         .catch(error => console.error('Erro ao buscar dados:', error));
 });
