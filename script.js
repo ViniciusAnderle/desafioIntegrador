@@ -18,7 +18,7 @@ fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allow
   })
   .catch(error => console.error('Error:', error));
 
-fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=30')
+fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
   .then(response => response.json())
   .then(data => {
     const casesData = {
