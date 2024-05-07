@@ -1,60 +1,46 @@
-/* styles.css */
-
-/* Definindo estilos para o corpo do documento */
-body {
-  background-color: #d3d3d3; /* Cinza claro */
+.container {
+  margin-top: 50px;
 }
 
-/* Estilos para o cabeçalho */
-header {
-  background-color: #01c511; /* Cor de fundo */
-  color: #fff; /* Cor do texto */
-  padding: 10px 0; /* Espaçamento interno superior e inferior */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
-  transition: background-color 0.3s ease; /* Transição suave de cor */
-}
-header:hover {
-  background-color: #388e3c; /* Nova cor ao passar o mouse por cima */
-}
-.navbar-brand {
-  font-weight: bold; /* Negrito para o texto do logo */
+h1 {
+  text-align: center;
 }
 
-.navbar-nav .nav-link {
-  color: #fff; /* Cor do texto dos links */
+.card {
+  margin-bottom: 20px;
 }
 
-/* Estilos para os cartões de notícias */
+#map {
+  height: 100vh;
+  width: 100%;
+}
+
+.legend {
+  display: flex;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item {
+  margin: 5px;
+}
+
+.legend-color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+
 .card {
   margin-bottom: 20px;
 }
 
 .card-img-top {
-  max-height: 200px;
-  object-fit: cover;
-}
-
-.card-title {
-  font-size: 20px;
-}
-
-/* Estilos para o título principal */
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-/* Estilos para o contêiner */
-.container {
-  margin-top: 50px;
-}
-
-/* Adicionando a mudança de cor ao passar o mouse */
-.elemento {
-  color: #01c511;
-  transition: color 0.5s; /* Adiciona uma transição suave */
-}
-
-.elemento:hover {
-  color: #01c511;
+  width: 100%;
+  height: 200px; /* Altura da imagem */
+  object-fit: cover; /* Para ajustar a imagem dentro do container */
 }
