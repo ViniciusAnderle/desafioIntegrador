@@ -44,3 +44,21 @@ h1 {
   height: 200px; /* Altura da imagem */
   object-fit: cover; /* Para ajustar a imagem dentro do container */
 }
+
+
+
+
+/*footer css*/
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 6px;
+  text-align: center;
+  width: 100%;
+  align-self: flex-end; /* Alinha o rodapé no final do container */
+}
+#lastUpdated {
+  font-size: 14px;
+}
+

@@ -1,3 +1,25 @@
+// Função para obter o timestamp da última atualização da API
+async function getLastUpdatedTimestamp() {
+  const response = await fetch('https://disease.sh/v3/covid-19/all');
+  const data = await response.json();
+  return data.updated;
+}
+
+// Fetch para obter o timestamp da última atualização e atualizar o rodapé
+getLastUpdatedTimestamp()
+  .then(timestamp => {
+      const formattedTimestamp = new Date(timestamp).toLocaleString('pt-BR');
+      document.getElementById('updatedTimestamp').textContent = `Última atualização da API: ${formattedTimestamp}`;
+  })
+  .catch(error => console.error('Error:', error));
+
+
+
+
+
+
+
+
 fetch('https://disease.sh/v3/covid-19/all')
   .then(response => response.json())
   .then(data => {
