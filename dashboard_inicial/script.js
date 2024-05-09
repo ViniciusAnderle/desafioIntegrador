@@ -37,6 +37,20 @@ fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allow
   })
   .catch(error => console.error('Error:', error));
 
+  // Fetch para obter os dados dos países e exibir os 10 países com menos casos em uma tabela
+  fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
+  .then(response => response.json())
+  .then(data => {
+    let leastCases = '';
+    data.slice(-10).forEach(country => {
+      leastCases += `<tr><td>${country.country}</td><td>${country.cases.toLocaleString()}</td></tr>`;
+    });
+    document.getElementById('leastCases').innerHTML = leastCases;
+  })
+  .catch(error => console.error('Error:', error));
+  
+  
+
 // Fetch para obter os dados históricos globais da COVID-19 e exibir gráficos de casos e mortes
 fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
   .then(response => response.json())
@@ -79,14 +93,14 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
 fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
   .then(response => response.json())
   .then(data => {
-    const topCountries = data.slice(0, 10);
+    const topCountries = data.slice(0, 20);
     const countriesLabels = topCountries.map(country => country.country);
     const countriesCases = topCountries.map(country => country.cases);
 
     // Cria o gráfico de pizza com os países e seus casos
     const ctx = document.getElementById('topCasesChart').getContext('2d');
     new Chart(ctx, {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels: countriesLabels,
         datasets: [{
