@@ -1,11 +1,12 @@
 body {
-
   background-color: white;
 }
+
 h1 {
   text-align: center;
   
 }
+
 .container {
   margin-top: 50px;
 }
@@ -25,13 +26,14 @@ h1 {
 /*footer css*/
 
 footer {
-  background-color: #999999;
+  background-color: #333;
   color: #fff;
   padding: 6px;
   text-align: center;
   width: 100%;
-  align-self: flex-end;
+  align-self: flex-end; /* Alinha o rodapé no final do container */
 }
+
 #lastUpdated {
   font-size: 14px;
 }
