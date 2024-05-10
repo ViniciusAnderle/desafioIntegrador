@@ -5,17 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COVID-19 Vaccine Dashboard</title>
-    <link rel="stylesheet" href="vac.css">
+    <link rel="stylesheet" href="sintomas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
 
 </head>
 
 <body>
-
-
-
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="../home/home.html">Home</a>
@@ -41,21 +39,44 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <h1>COVID-19 - Dashboard de Vacinas</h1>
-        <h1>Vacinação no Mundo</h1>
+    <body>
+        <div class="container">
+            <h1>Teste de Sintomas COVID-19</h1>
+            <form id="symptom-test">
+                <label>
+                    <input type="checkbox" name="symptom" value="Febre"> Febre
+                </label>
+                <label>
+                    <input type="checkbox" name="symptom" value="Tosse"> Tosse
+                </label>
+                <label>
+                    <input type="checkbox" name="symptom" value="Falta de ar"> Falta de ar ou dificuldade para respirar
+                </label>
+                <label>
+                    <input type="checkbox" name="symptom" value="Fadiga"> Fadiga
+                </label>
+                <label>
+                    <input type="checkbox" name="symptom" value="Dores musculares ou corporais"> Dores musculares ou corporais
+                </label>
+                <label>
+                    <input type="checkbox" name="symptom" value="Dor de garganta"> Dor de garganta
+                </label>
+                <label>
+                    <input type="checkbox" name="symptom" value="Perda de paladar ou olfato"> Perda de paladar ou olfato
+                </label>
+                <button type="button" onclick="submitSymptoms()">Verificar Sintomas</button>
+            </form>
+            <div id="result"></div>
+        </div>
 
-        <canvas id="globalChart" width="400" height="200"></canvas>
-        <h1>Vacinação no Brasil</h1>
-        <canvas id="brazilChart" width="400" height="200"></canvas>
-    </div>
-
-    <footer>
-        <p id="lastUpdated"><span id="updatedTimestamp">Carregando...</span></p>
-    </footer>
+        <div class="col-md-6">
+            <div class="card-img-top">
+                <a href="https://www.google.com/maps?authuser=0" target="_blank">
+                    <img class="card-img-top" src="../teste-sintomas/MAPA.jpeg" alt="Imagem">
+                </a>
+            </div>
+        </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0"></script>
-    <script src="vac.js"></script>
-</body>
-
-</html>
+        <script src="sintomas.js"></script>
+    </body>
+    </html>
