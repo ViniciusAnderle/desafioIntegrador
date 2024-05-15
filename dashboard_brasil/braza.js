@@ -8,9 +8,11 @@ async function getData() {
 // Função para criar os cards com os totais
 async function updateCards() {
     const data = await getData();
-    document.getElementById('totalCases').textContent = data.cases.toLocaleString('pt-BR');
+    if (document) {
+      document.getElementById('totalCases').textContent = data.cases.toLocaleString('pt-BR');
     document.getElementById('totalRecovered').textContent = data.recovered.toLocaleString('pt-BR');
     document.getElementById('totalDeaths').textContent = data.deaths.toLocaleString('pt-BR');
+    }
 }
 
 
@@ -88,6 +90,7 @@ async function getAgeGroupData() {
   const data = await response.json();
   // Extrair dados de casos por faixa etária dos dados da API (assumindo que os dados reais estão disponíveis neste formato)
   // Substitua este trecho pela lógica real para extrair os dados de casos por faixa etária
+
   const ageData = [
       { ageGroup: '0-10', cases: 100 },
       { ageGroup: '11-20', cases: 200 },

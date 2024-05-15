@@ -37,6 +37,20 @@ fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allow
   })
   .catch(error => console.error('Error:', error));
 
+  // Fetch para obter os dados dos países e exibir os 10 países com menos casos em uma tabela
+  fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
+  .then(response => response.json())
+  .then(data => {
+    let leastCases = '';
+    data.slice(-10).forEach(country => {
+      leastCases += `<tr><td>${country.country}</td><td>${country.cases.toLocaleString()}</td></tr>`;
+    });
+    document.getElementById('leastCases').innerHTML = leastCases;
+  })
+  .catch(error => console.error('Error:', error));
+  
+  
+
 // Fetch para obter os dados históricos globais da COVID-19 e exibir gráficos de casos e mortes
 fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
   .then(response => response.json())
@@ -79,30 +93,40 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
 fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
   .then(response => response.json())
   .then(data => {
-    const topCountries = data.slice(0, 10);
+    const topCountries = data.slice(0, 20);
     const countriesLabels = topCountries.map(country => country.country);
     const countriesCases = topCountries.map(country => country.cases);
 
     // Cria o gráfico de pizza com os países e seus casos
     const ctx = document.getElementById('topCasesChart').getContext('2d');
     new Chart(ctx, {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels: countriesLabels,
         datasets: [{
           label: 'Top 10 Países por Total de Casos',
           data: countriesCases,
           backgroundColor: [
-            'rgba(255, 99, 132, 0.8)',
-            'rgba(54, 162, 235, 0.8)',
-            'rgba(255, 206, 86, 0.8)',
-            'rgba(75, 192, 192, 0.8)',
-            'rgba(153, 102, 255, 0.8)',
-            'rgba(255, 159, 64, 0.8)',
-            'rgba(255, 99, 132, 0.8)',
-            'rgba(54, 162, 235, 0.8)',
-            'rgba(255, 206, 86, 0.8)',
-            'rgba(75, 192, 192, 0.8)'
+            'rgba(145, 1, 255, 1)',
+            'rgba(255, 153, 0, 1)', 
+            'rgba(255, 204, 102, 1)', 
+            'rgba(255, 102, 0, 1)',
+            'rgba(155, 151, 153, 1)', 
+            'rgba(255, 0, 255, 1)', 
+            'rgba(128, 0, 128, 1)',
+            'rgba(102, 102, 255, 1)',
+            'rgba(0, 153, 255, 1)', 
+            'rgba(0, 204, 0, 1)',
+            'rgba(51, 204, 153, 1)', 
+            'rgba(244, 300, 89, 1)', 
+            'rgba(0, 153, 153, 1)', 
+            'rgba(204, 204, 204, 1)',
+            'rgba(192, 192, 192, 1)', 
+            'rgba(255, 153, 204, 1)',
+            'rgba(255, 204, 229, 1)',
+            'rgba(150, 150, 1, 1)', 
+            'rgba(153, 102, 255, 1)' 
+
           ],
           borderWidth: 1
         }]

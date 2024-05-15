@@ -31,7 +31,7 @@
                         <a class="nav-link" href="../dashboard_brasil/braza.html">Dashboard Brasil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="outra_pagina4.html">Página 4</a>
+                        <a class="nav-link" href="../teste-sintomas/sintomas.html">Teste de Sintomas</a>
                     </li>
                     <li class="nav-item">
                         <button class="btn btn-secondary" id="toggleDarkMode">Modo Escuro</button>
@@ -90,9 +90,23 @@
                         </tr>
                     </thead>
                     <tbody id="topCases"></tbody>
+                    
                 </table>
             </div>
             <div class="col-md-6">
+                <h2>10 Países por menor Total de Casos</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>País</th>
+                            <th>Total de Casos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leastCases"></tbody>
+                    
+                </table>
+            </div>
+            <div class="col-md-12">
                 <div id="topCasesChartContainer">
                     <canvas id="topCasesChart"></canvas>
                 </div>
