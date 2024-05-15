@@ -1,25 +1,66 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.5s, color 0.5s;
 }
 
-h1 {
-    text-align: center; 
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+  transition: background-color 0.5s, color 0.5s;
 }
+
+.card {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.card-container.dark-mode .card {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.card-container.dark-mode .card .card-body {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-container.dark-mode .card .card-title {
+  color: #ffffff;
+}
+
+.card-container.dark-mode .card .card-text {
+  color: #ffffff;
+}
+
 
 footer {
-    background-color: #333;
-    color: #fff;
-    padding: 6px;
-    text-align: center;
-    width: 100%;
-    align-self: flex-end; /* Alinha o rodapé no final do container */
-  }
-  
-  #lastUpdated {
-    font-size: 14px;
-  }
+  background-color: #f8f9fa;
+  color: #333333;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  transition: background-color 0.5s, color 0.5s;
+}
 
+footer.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+body.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
 
-
+footer.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}

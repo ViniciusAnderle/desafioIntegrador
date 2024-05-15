@@ -288,3 +288,23 @@ createRecoveredVsDeathsChart();
 createCasesByAgeChart();
 createDailyCasesChart();
 updateCards();
+document.getElementById('toggleDarkMode').addEventListener('click', function() {
+  // Seleciona o body, footer e os cards
+  const body = document.body;
+  const footer = document.querySelector('footer');
+  const cards = document.querySelectorAll('.card-container');
+
+  // Alterna entre os modos
+  body.classList.toggle('dark-mode');
+  footer.classList.toggle('dark-mode');
+  cards.forEach(card => card.classList.toggle('dark-mode'));
+
+  // Atualiza o texto do botão
+  const button = document.getElementById('toggleDarkMode');
+  if (body.classList.contains('dark-mode')) {
+    button.textContent = 'Modo Claro';
+  } else {
+    button.textContent = 'Modo Escuro';
+  }
+});
+

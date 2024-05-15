@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="home.html">Home</a>
+            <a class="navbar-brand" href="../home/home.html">Home</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,22 +22,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Página do Vini</a>
+                        <a class="nav-link" href="../dashboard_inicial/dashboard_inicial.html">Dashboard de Casos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="vac.html">Vacinas</a>
+                        <a class="nav-link" href="../dashboard_vacinas/vac.html">Dashboard de Vacinas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Braza.html">Braza</a>
+                        <a class="nav-link" href="../dashboard_brasil/braza.html">Dashboard Brasil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="outra_pagina4.html">Página 4</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-secondary" id="toggleDarkMode">Modo Escuro</button>
                     </li>
                 </ul>
             </div>
         </nav>
     </header>
-
 
     <div class="container">
         <h1>Painel COVID-19</h1>
@@ -115,20 +116,20 @@
                     casos</div>
                 <div class="legend-item"><span class="legend-color" style="background-color: #FED976;"></span> > 10,000
                     casos</div>
-                <div class="legend-item"><span class="legend-color" style="background-color: #FFEDA0;"></span>
-                    < 10,000 casos</div>
-                </div>
+                <div class="legend-item"><span class="legend-color" style="background-color: #FFEDA0;"></span> < 10,000
+                    casos</div>
             </div>
         </div>
+    </div>
 
-        <footer>
-            <p id="lastUpdated"><span id="updatedTimestamp">Carregando...</span></p>
-        </footer>
+    <footer>
+        <p id="lastUpdated"><span id="updatedTimestamp">Carregando...</span></p>
+    </footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-        <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-        <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

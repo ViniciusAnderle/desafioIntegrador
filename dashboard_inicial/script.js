@@ -8,10 +8,10 @@ async function getLastUpdatedTimestamp() {
 // Fetch para obter o timestamp da última atualização e atualizar o rodapé
 getLastUpdatedTimestamp()
   .then(timestamp => {
-      // Formata o timestamp para exibir no formato de data e hora local
-      const formattedTimestamp = new Date(timestamp).toLocaleString('pt-BR');
-      // Atualiza o elemento HTML com o timestamp formatado
-      document.getElementById('updatedTimestamp').textContent = `Última atualização da API: ${formattedTimestamp}`;
+    // Formata o timestamp para exibir no formato de data e hora local
+    const formattedTimestamp = new Date(timestamp).toLocaleString('pt-BR');
+    // Atualiza o elemento HTML com o timestamp formatado
+    document.getElementById('updatedTimestamp').textContent = `Última atualização da API: ${formattedTimestamp}`;
   })
   .catch(error => console.error('Error:', error));
 
@@ -212,3 +212,22 @@ fetch('https://disease.sh/v3/covid-19/countries')
       }
     });
   });
+
+document.getElementById('toggleDarkMode').addEventListener('click', function () {
+  document.body.classList.toggle('dark-mode');
+  document.querySelector('.navbar-light').classList.toggle('dark-mode');
+  document.querySelectorAll('.card').forEach(card => card.classList.toggle('dark-mode'));
+  document.querySelectorAll('.footer').forEach(footer => footer.classList.toggle('dark-mode'));
+  document.querySelectorAll('.container').forEach(container => container.classList.toggle('dark-mode'));
+  document.querySelectorAll('.table').forEach(table => table.classList.toggle('dark-mode'));
+  document.querySelectorAll('.legend').forEach(legend => legend.classList.toggle('dark-mode'));
+  document.querySelectorAll('.legend-item').forEach(legendItem => legendItem.classList.toggle('dark-mode'));
+
+  const button = document.getElementById('toggleDarkMode');
+  if (document.body.classList.contains('dark-mode')) {
+    button.textContent = 'Modo Claro';
+  } else {
+    button.textContent = 'Modo Escuro';
+  }
+});
+
