@@ -8,9 +8,11 @@ async function getData() {
 // Função para criar os cards com os totais
 async function updateCards() {
     const data = await getData();
-    document.getElementById('totalCases').textContent = data.cases.toLocaleString('pt-BR');
+    if (document) {
+      document.getElementById('totalCases').textContent = data.cases.toLocaleString('pt-BR');
     document.getElementById('totalRecovered').textContent = data.recovered.toLocaleString('pt-BR');
     document.getElementById('totalDeaths').textContent = data.deaths.toLocaleString('pt-BR');
+    }
 }
 
 
@@ -289,3 +291,8 @@ createRecoveredVsDeathsChart();
 createCasesByAgeChart();
 createDailyCasesChart();
 updateCards();
+
+
+module.exports = {
+  getData
+};
