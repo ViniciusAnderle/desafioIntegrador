@@ -88,18 +88,17 @@ async function createDailyCasesChart() {
 async function getAgeGroupData() {
   const response = await fetch('https://disease.sh/v3/covid-19/historical/Brazil?lastdays=all');
   const data = await response.json();
-  // Extrair dados de casos por faixa etária dos dados da API (assumindo que os dados reais estão disponíveis neste formato)
   // Substitua este trecho pela lógica real para extrair os dados de casos por faixa etária
 
   const ageData = [
-      { ageGroup: '0-10', cases: 100 },
-      { ageGroup: '11-20', cases: 200 },
-      { ageGroup: '21-30', cases: 300 },
-      { ageGroup: '31-40', cases: 400 },
-      { ageGroup: '41-50', cases: 500 },
-      { ageGroup: '51-60', cases: 600 },
-      { ageGroup: '61-70', cases: 700 },
-      { ageGroup: '71-80', cases: 800 },
+      { ageGroup: '0-10 anos', cases: 100 },
+      { ageGroup: '11-20 anos', cases: 200 },
+      { ageGroup: '21-30 anos', cases: 300 },
+      { ageGroup: '31-40 anos', cases: 400 },
+      { ageGroup: '41-50 anos', cases: 500 },
+      { ageGroup: '51-60 anos', cases: 600 },
+      { ageGroup: '61-70 anos', cases: 700 },
+      { ageGroup: '71-80 anos', cases: 800 },
       { ageGroup: '81+', cases: 900 }
   ];
   return ageData;
