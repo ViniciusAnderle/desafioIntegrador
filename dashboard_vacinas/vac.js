@@ -27,92 +27,105 @@ getLastUpdatedTimestamp()
         document.getElementById('updatedTimestamp').textContent = `Última atualização da API: ${formattedTimestamp}`;
     })
     .catch(error => console.error('Error:', error));
-
-// Evento que é acionado quando o DOM está completamente carregado
-document.addEventListener('DOMContentLoaded', function () {
-    // Fetch para obter os dados de vacinação do Brasil
-    fetch('https://covid.ourworldindata.org/data/vaccinations/vaccinations.json')
-        .then(response => response.json())
-        .then(data => {
-            const brazilData = data.find(countryData => countryData.country === 'Brazil');
-            if (!brazilData) {
-                console.error('Dados de vacinação para o Brasil não encontrados.');
-                return;
-            }
-
-            const totalDosesBrazil = brazilData.data.map(dayData => dayData.total_vaccinations || 0);
-            const totalVaccinatedBrazil = brazilData.data.map(dayData => dayData.people_fully_vaccinated || 0);
-
-            const brazilChartCtx = document.getElementById('brazilChart').getContext('2d');
-            const brazilChart = new Chart(brazilChartCtx, {
-                type: 'line',
-                data: {
-                    labels: brazilData.data.map(dayData => dayData.date),
-                    datasets: [{
-                        label: 'Total de Doses Aplicadas no Brasil',
-                        data: totalDosesBrazil,
-                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Total de Pessoas Totalmente Vacinadas no Brasil',
-                        data: totalVaccinatedBrazil,
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
+    document.addEventListener('DOMContentLoaded', function () {
+        // Fetch para obter os dados de vacinação do Brasil
+        fetch('https://covid.ourworldindata.org/data/vaccinations/vaccinations.json')
+            .then(response => response.json())
+            .then(data => {
+                const brazilData = data.find(countryData => countryData.country === 'Brazil');
+                if (!brazilData) {
+                    console.error('Dados de vacinação para o Brasil não encontrados.');
+                    return;
+                }
+    
+                const dosesAdministeredBrazil = brazilData.data.map(dayData => dayData.total_vaccinations || 0);
+                const peopleVaccinatedBrazil = brazilData.data.map(dayData => dayData.people_vaccinated || 0);
+                const peopleFullyVaccinatedBrazil = brazilData.data.map(dayData => dayData.people_fully_vaccinated || 0);
+    
+                const brazilChartCtx = document.getElementById('brazilChart').getContext('2d');
+                const brazilChart = new Chart(brazilChartCtx, {
+                    type: 'line',
+                    data: {
+                        labels: brazilData.data.map(dayData => dayData.date),
+                        datasets: [{
+                            label: 'Total de Doses Administradas no Brasil',
+                            data: dosesAdministeredBrazil,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Pessoas Vacinadas Parcialmente no Brasil',
+                            data: peopleVaccinatedBrazil,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Pessoas Totalmente Vacinadas no Brasil',
+                            data: peopleFullyVaccinatedBrazil,
+                            backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
                         }
                     }
+                });
+            })
+            .catch(error => console.error('Erro ao buscar dados:', error));
+    
+        // Fetch para obter os dados de vacinação globais
+        fetch('https://covid.ourworldindata.org/data/vaccinations/vaccinations.json')
+            .then(response => response.json())
+            .then(data => {
+                const globalData = data.find(countryData => countryData.country === 'World');
+                if (!globalData) {
+                    console.error('Dados de vacinação mundiais não encontrados.');
+                    return;
                 }
-            });
-        })
-        .catch(error => console.error('Erro ao buscar dados:', error));
-
-    // Fetch para obter os dados de vacinação globais
-    fetch('https://covid.ourworldindata.org/data/vaccinations/vaccinations.json')
-        .then(response => response.json())
-        .then(data => {
-            const globalData = data.find(countryData => countryData.country === 'World');
-            if (!globalData) {
-                console.error('Dados de vacinação mundiais não encontrados.');
-                return;
-            }
-
-            const totalDosesGlobal = globalData.data.map(dayData => dayData.total_vaccinations || 0);
-            const totalVaccinatedGlobal = globalData.data.map(dayData => dayData.people_fully_vaccinated || 0);
-
-            const globalChartCtx = document.getElementById('globalChart').getContext('2d');
-            const globalChart = new Chart(globalChartCtx, {
-                type: 'line',
-                data: {
-                    labels: globalData.data.map(dayData => dayData.date),
-                    datasets: [{
-                        label: 'Total de Doses Aplicadas no Mundo',
-                        data: totalDosesGlobal,
-                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Total de Pessoas Totalmente Vacinadas no Mundo',
-                        data: totalVaccinatedGlobal,
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
+    
+                const dosesAdministeredGlobal = globalData.data.map(dayData => dayData.total_vaccinations || 0);
+                const peopleVaccinatedGlobal = globalData.data.map(dayData => dayData.people_vaccinated || 0);
+                const peopleFullyVaccinatedGlobal = globalData.data.map(dayData => dayData.people_fully_vaccinated || 0);
+    
+                const globalChartCtx = document.getElementById('globalChart').getContext('2d');
+                const globalChart = new Chart(globalChartCtx, {
+                    type: 'line',
+                    data: {
+                        labels: globalData.data.map(dayData => dayData.date),
+                        datasets: [{
+                            label: 'Total de Doses Administradas no Mundo',
+                            data: dosesAdministeredGlobal,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Pessoas Vacinadas Parcialmente no Mundo',
+                            data: peopleVaccinatedGlobal,
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }, {
+                            label: 'Pessoas Totalmente Vacinadas no Mundo',
+                            data: peopleFullyVaccinatedGlobal,
+                            backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
                         }
                     }
-                }
-            });
-        })
-        .catch(error => console.error('Erro ao buscar dados:', error));
-});
+                });
+            })
+            .catch(error => console.error('Erro ao buscar dados:', error));
+    });
+    
