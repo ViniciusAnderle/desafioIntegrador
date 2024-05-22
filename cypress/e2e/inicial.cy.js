@@ -12,7 +12,7 @@ describe("Dashboard Brasil - Testes de Integração", () => {
         cy.get('#totalRecovered').invoke('text').should('match', /\d{1,3}\.\d{3}\.\d{3}/);
         cy.get('#totalDeaths').invoke('text').should('match', /\d{1,3}\.\d{3}\.\d{3}/);
     });
-    
+
 
     it('Deve exibir os 10 países com mais casos e os 10 países com menos casos em tabelas', () => {
         cy.get('#topCases').find('tr').should('have.length', 10);
@@ -23,12 +23,12 @@ describe("Dashboard Brasil - Testes de Integração", () => {
         cy.get('#casesChart', { timeout: 10000 }).should('exist');
         cy.get('#deathsChart', { timeout: 10000 }).should('exist');
     });
-    
+
 
     it('Deve exibir um gráfico de barras com os 10 países com mais casos formatado', () => {
         cy.get('#topCasesChart', { timeout: 10000 }).should('exist');
     });
-    
+
 
     it('Deve exibir um mapa Leaflet com marcadores para os países com casos de COVID-19', () => {
         cy.get('#map').should('exist');
@@ -40,6 +40,34 @@ describe("Dashboard Brasil - Testes de Integração", () => {
         cy.get('body').should('have.class', 'dark-mode');
         cy.get('#toggleDarkMode').click();
         cy.get('body').should('not.have.class', 'dark-mode');
+    });
+    it('Deve exibir polígonos no mapa com dados de COVID-19 para diferentes países', () => {
+        // Verificar se o mapa existe
+        cy.get('#map').should('exist');
+
+        // Aguardar o carregamento dos dados no mapa (ajustar o tempo conforme necessário)
+        cy.wait(5000);
+
+        // Verificar se existem elementos de polígono no mapa
+        cy.get('.leaflet-interactive').should('have.length.greaterThan', 0);
+    });
+
+    it('Deve exibir corretamente as informações ao clicar nos polígonos do mapa', () => {
+        // Verificar se o mapa existe
+        cy.get('#map').should('exist');
+
+        // Aguardar o carregamento dos dados no mapa (ajustar o tempo conforme necessário)
+        cy.wait(5000);
+
+        // Verificar se existem elementos de polígono no mapa
+        cy.get('.leaflet-interactive').should('have.length.greaterThan', 0);
+
+        // Simular um clique em um dos polígonos
+        cy.get('.leaflet-interactive').first().click();
+
+        // Verificar se a popup com informações aparece
+        cy.get('.leaflet-popup-content').should('exist');
+        cy.get('.leaflet-popup-content').should('contain.text', 'Casos:');
     });
 
 });
