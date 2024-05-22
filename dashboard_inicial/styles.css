@@ -3,7 +3,13 @@ body {
   background-color: #ffffff;
   color: #000000;
 }
-
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
 .navbar-light {
   background-color: #f8f9fa;
 }
