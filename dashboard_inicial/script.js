@@ -121,6 +121,21 @@ fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allow
 
 // Cria um mapa Leaflet para visualizar os casos de COVID-19 por país
 const map = L.map('map').setView([0, 0], 2);
+const southWest = L.latLng(-90, -180);
+const northEast = L.latLng(900, 180);
+const bounds = L.latLngBounds(southWest, northEast);
+map.setMaxBounds(bounds);
+
+// Se a posição inicial do mapa estiver fora dos limites, ajuste-a para dentro
+map.on('drag', function () {
+  map.panInsideBounds(bounds, { animate: false });
+});
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  minZoom: 2, // Defina o zoom mínimo permitido
+}).addTo(map);
+
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { minZoom: 2 }).addTo(map);
 
 function getColor(cases) {
