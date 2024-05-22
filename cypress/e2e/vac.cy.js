@@ -22,4 +22,23 @@ describe('Vacinação COVID-19 Dashboard', () => {
     it('Deve exibir os dados de vacinação globais', () => {
         cy.get('#globalChart').should('exist');
     });
+    it(`DADO que a aplicação é iniciada
+        E a busca por todos os dados é realizada
+        DEVE informar a última vez que a API foi atualizada`, () => {
+        cy.intercept("https://disease.sh/v3/covid-19/all", {
+            fixture: "all_data.json",
+        }).as("getAllData");
+
+        cy.reload();
+
+        cy.wait("@getAllData").then(({ response }) => {
+            const formattedTimestamp = new Date(response.body.updated).toLocaleString(
+                "pt-BR"
+            );
+            cy.get("#updatedTimestamp").should(
+                "contain",
+                `Última atualização da API: ${formattedTimestamp}`
+            );
+        });
+    });
 });
