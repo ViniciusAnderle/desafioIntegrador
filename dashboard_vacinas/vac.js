@@ -3,6 +3,7 @@
 // Função para alternar entre modo claro e escuro
 document.getElementById('toggleDarkMode').addEventListener('click', function () {
     document.body.classList.toggle('dark-mode');
+    document.querySelector('.navbar').classList.toggle('dark-mode');
     document.querySelector('.container').classList.toggle('dark-mode');
     document.querySelector('footer').classList.toggle('dark-mode');
     const button = document.getElementById('toggleDarkMode');

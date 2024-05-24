@@ -13,6 +13,19 @@ body {
 .navbar-light {
   background-color: #f8f9fa;
 }
+.navbar.dark-mode {
+  background-color: #333333;
+  border-color: #444444;
+}
+
+.navbar.dark-mode .nav-link {
+  color: #ffffff;
+}
+
+.navbar.dark-mode .navbar-brand,
+.navbar.dark-mode .navbar-toggler-icon {
+  color: #ffffff;
+}
 
 footer {
   background-color: #333;
@@ -20,24 +33,41 @@ footer {
 }
 
 /* Modo escuro */
+/* Estilos para o modo escuro */
+/* Estilos para o modo escuro */
 body.dark-mode {
   background-color: #121212;
-  color: #e0e0e0;
+  color: #ffffff;
 }
 
 .navbar-light.dark-mode {
-  background-color: #333;
+  background-color: #333333 !important;
+  border-color: #444444 !important;
 }
 
-.card.dark-mode {
-  background-color: #1e1e1e;
-  color: #e0e0e0;
+.navbar-light.dark-mode .nav-link {
+  color: #ffffff !important;
 }
 
-.footer.dark-mode {
-  background-color: #1e1e1e;
-  color: #e0e0e0;
+.navbar-light.dark-mode .navbar-brand {
+  color: #ffffff !important;
 }
+
+.navbar-light.dark-mode .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.container.dark-mode {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+footer.dark-mode {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+
 
 /* Outros elementos no modo escuro */
 .container.dark-mode,

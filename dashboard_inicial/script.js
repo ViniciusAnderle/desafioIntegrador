@@ -169,15 +169,28 @@ fetch('https://disease.sh/v3/covid-19/countries')
   })
   .catch(error => console.error('Error:', error));
 
-document.getElementById('toggleDarkMode').addEventListener('click', function () {
-  const elementsToToggle = [
-    'body', '.navbar-light', '.card', '.footer', 
-    '.container', '.table', '.legend', '.legend-item'
-  ];
-  elementsToToggle.forEach(selector => {
-    document.querySelectorAll(selector).forEach(element => element.classList.toggle('dark-mode'));
-  });
-
-  const button = document.getElementById('toggleDarkMode');
-  button.textContent = document.body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Escuro';
+  document.getElementById('toggleDarkMode').addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+    document.querySelector('.navbar').classList.toggle('dark-mode');
+    
+    // Verifica se existe um container e aplica a classe de modo escuro
+    const container = document.querySelector('.container');
+    if (container) {
+        container.classList.toggle('dark-mode');
+    }
+    
+    // Verifica se existe um footer e aplica a classe de modo escuro
+    const footer = document.querySelector('footer');
+    if (footer) {
+        footer.classList.toggle('dark-mode');
+    }
+    
+    // Muda o texto do botão
+    const button = document.getElementById('toggleDarkMode');
+    if (document.body.classList.contains('dark-mode')) {
+        button.textContent = 'Modo Claro';
+    } else {
+        button.textContent = 'Modo Escuro';
+    }
 });
+
