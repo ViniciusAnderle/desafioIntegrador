@@ -39,7 +39,7 @@ fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allow
       topCases += `<tr><td>${country.country}</td><td>${formatNumber(country.cases)}</td></tr>`;
     });
 
-    data.slice(-10).forEach(country => {
+    data.slice(-10).reverse().forEach(country => {
       leastCases += `<tr><td>${country.country}</td><td>${formatNumber(country.cases)}</td></tr>`;
     });
 
