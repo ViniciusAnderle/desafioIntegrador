@@ -7,7 +7,9 @@
     <title>Página Inicial - Notícias sobre COVID-19</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
 </head>
 
@@ -15,23 +17,26 @@
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="../home/home.html">Home</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="../home/home.html">
+                <span class="material-symbols-outlined">home</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../dashboard_inicial/dashboard_inicial.html">Dashboard de Casos</a>
+                        <a class="nav-link nav-dashboard_inicial" href="../dashboard_inicial/dashboard_inicial.html">Dashboard de Casos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../dashboard_vacinas/vac.html">Dashboard de Vacinas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../dashboard_brasil/braza.html">Dashboard Brasil</a>
+                        <a class="nav-link active" href="../dashboard_brasil/braza.html">Dashboard Brasil</a>
                     </li>
                 </ul>
+                <button class="btn btn-secondary" id="toggleDarkMode">Modo Escuro</button>
             </div>
         </nav>
     </header>
@@ -140,7 +145,7 @@
     </footer>
     
 
-    <script src="home.js"></script> <!-- Se você já tem um arquivo JavaScript -->
+    <script src="../../assets/scripts/home.js"></script>
 </body>
 
 </html>

@@ -170,23 +170,37 @@ fetch('https://disease.sh/v3/covid-19/countries')
   .catch(error => console.error('Error:', error));
 
   document.getElementById('toggleDarkMode').addEventListener('click', function () {
+    // Alterna a classe dark-mode no body
     document.body.classList.toggle('dark-mode');
-    document.querySelector('.navbar').classList.toggle('dark-mode');
     
-    // Verifica se existe um container e aplica a classe de modo escuro
+    // Seleciona o navbar e alterna suas classes
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('dark-mode');
+    navbar.classList.toggle('navbar-light');
+    navbar.classList.toggle('bg-light');
+    
+    // Alterna a classe dark-mode no container, se existir
     const container = document.querySelector('.container');
     if (container) {
         container.classList.toggle('dark-mode');
     }
     
-    // Verifica se existe um footer e aplica a classe de modo escuro
+    // Alterna a classe dark-mode no footer, se existir
     const footer = document.querySelector('footer');
     if (footer) {
         footer.classList.toggle('dark-mode');
     }
+
+    // Alterna a classe dark-mode em todas as card-body, se existir
     const cardBodies = document.querySelectorAll('.card-body');
     cardBodies.forEach(function(cardBody) {
         cardBody.classList.toggle('dark-mode');
+    });
+
+    // Alterna a classe dark-mode em todas as tabelas, se existir
+    const tables = document.querySelectorAll('.table');
+    tables.forEach(function(table) {
+        table.classList.toggle('dark-mode');
     });
     
     // Muda o texto do botão
@@ -197,4 +211,3 @@ fetch('https://disease.sh/v3/covid-19/countries')
         button.textContent = 'Modo Escuro';
     }
 });
-

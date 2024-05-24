@@ -268,7 +268,6 @@ fetch('https://disease.sh/v3/covid-19/historical/Brazil?lastdays=all')
 
 
 createRecoveredVsDeathsChart();
-createCasesByAgeChart();
 createDailyCasesChart();
 updateCards();
 document.getElementById('toggleDarkMode').addEventListener('click', function () {

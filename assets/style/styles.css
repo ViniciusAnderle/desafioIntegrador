@@ -20,6 +20,14 @@ body {
 .navbar.dark-mode .nav-link {
   color: #ffffff;
 }
+.navbar-nav .nav-link {
+  transition: transform 0.3s ease; /* Transição suave */
+}
+
+/* Estilos ao passar o mouse (hover) sobre os itens <a> */
+.navbar-nav .nav-link:hover {
+  transform: scale(1.1); /* Aumenta o tamanho do item em 10% */
+}
 
 .navbar.dark-mode .navbar-brand,
 .navbar.dark-mode .navbar-toggler-icon {
@@ -53,7 +61,13 @@ body.dark-mode {
 .navbar-light.dark-mode .navbar-toggler-icon {
   filter: invert(1);
 }
-
+.navbar-brand .material-symbols-outlined {
+  font-size: 24px; /* Tamanho padrão do ícone */
+  transition: transform 0.3s ease; /* Transição suave */
+}
+.navbar-brand:hover .material-symbols-outlined {
+  transform: scale(1.2); /* Aumenta o tamanho do ícone em 20% */
+}
 .container.dark-mode {
   background-color: #1e1e1e;
   color: #ffffff;
@@ -66,6 +80,19 @@ footer.dark-mode {
 
 .card-body.dark-mode {
   background-color: #333333;
+  color: #e0e0e0;
+}
+
+.table.dark-mode {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.table.dark-mode thead th {
+  color: #ffffff;
+}
+
+.table.dark-mode tbody tr {
   color: #e0e0e0;
 }
 
