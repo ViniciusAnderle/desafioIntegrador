@@ -184,6 +184,10 @@ fetch('https://disease.sh/v3/covid-19/countries')
     if (footer) {
         footer.classList.toggle('dark-mode');
     }
+    const cardBodies = document.querySelectorAll('.card-body');
+    cardBodies.forEach(function(cardBody) {
+        cardBody.classList.toggle('dark-mode');
+    });
     
     // Muda o texto do botão
     const button = document.getElementById('toggleDarkMode');

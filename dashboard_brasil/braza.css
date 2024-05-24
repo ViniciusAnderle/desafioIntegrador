@@ -1,67 +1,147 @@
+/* Estilos padrão (Modo claro) */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.5s, color 0.5s;
+  background-color: #ffffff;
+  color: #000000;
 }
 
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.navbar-light {
+  background-color: #f8f9fa;
+}
+
+.navbar.dark-mode {
+  background-color: #333333;
+  border-color: #444444;
+}
+
+.navbar.dark-mode .nav-link {
+  color: #ffffff;
+}
+
+.navbar.dark-mode .navbar-brand,
+.navbar.dark-mode .navbar-toggler-icon {
+  color: #ffffff;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Modo escuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.navbar-light.dark-mode {
+  background-color: #333333 !important;
+  border-color: #444444 !important;
+}
+
+.navbar-light.dark-mode .nav-link {
+  color: #ffffff !important;
+}
+
+.navbar-light.dark-mode .navbar-brand {
+  color: #ffffff !important;
+}
+
+.navbar-light.dark-mode .navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.container.dark-mode {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+footer.dark-mode {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+.card-body.dark-mode {
+  background-color: #333333;
+  color: #e0e0e0;
+}
+
+/* Outros elementos no modo escuro */
+.container.dark-mode,
+.card.dark-mode,
+.table.dark-mode {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.legend.dark-mode {
+  background-color: #333;
+}
+
+.legend-item.dark-mode {
+  color: #e0e0e0;
+}
+
+/* Estilos gerais */
 .container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 0 20px;
-  transition: background-color 0.5s, color 0.5s;
+  margin-top: 50px;
+}
+
+h1 {
+  text-align: center;
 }
 
 .card {
-  background-color: #ffffff;
-  color: #000000;
-  padding: 20px;
   margin-bottom: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.5s, color 0.5s;
 }
 
-.card-container.dark-mode .card {
-  background-color: #333333;
-  color: #ffffff;
-}
-
-.card-container.dark-mode .card .card-body {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.card-container.dark-mode .card .card-title {
-  color: #ffffff;
-}
-
-.card-container.dark-mode .card .card-text {
-  color: #ffffff;
-}
-
-
-
-footer {
-  background-color: #f8f9fa;
-  color: #333333;
-  text-align: center;
-  padding: 0 10px;
-  position: fixed;
-  bottom: 0;
+#map {
+  height: 100vh;
   width: 100%;
-  transition: background-color 0.5s, color 0.5s;
 }
 
-footer.dark-mode {
-  background-color: #333333;
-  color: #ffffff;
-}
-body.dark-mode {
-  background-color: #333333;
-  color: #ffffff;
+.legend {
+  display: flex;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-footer.dark-mode {
-  background-color: #333333;
-  color: #ffffff;
+.legend-item {
+  margin: 5px;
+}
+
+.legend-color {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px; /* Altura da imagem */
+  object-fit: cover; /* Para ajustar a imagem dentro do container */
+}
+
+/* footer css */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 6px;
+  text-align: center;
+  width: 100%;
+  align-self: flex-end; /* Alinha o rodapé no final do container */
+}
+
+#lastUpdated {
+  font-size: 14px;
 }

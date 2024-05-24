@@ -272,21 +272,31 @@ createCasesByAgeChart();
 createDailyCasesChart();
 updateCards();
 document.getElementById('toggleDarkMode').addEventListener('click', function () {
-  // Seleciona o body, footer e os cards
-  const body = document.body;
+  document.body.classList.toggle('dark-mode');
+  document.querySelector('.navbar').classList.toggle('dark-mode');
+  
+  // Verifica se existe um container e aplica a classe de modo escuro
+  const container = document.querySelector('.container');
+  if (container) {
+      container.classList.toggle('dark-mode');
+  }
+  
+  // Verifica se existe um footer e aplica a classe de modo escuro
   const footer = document.querySelector('footer');
-  const cards = document.querySelectorAll('.card-container');
-
-  // Alterna entre os modos
-  body.classList.toggle('dark-mode');
-  footer.classList.toggle('dark-mode');
-  cards.forEach(card => card.classList.toggle('dark-mode'));
-
-  // Atualiza o texto do botão
+  if (footer) {
+      footer.classList.toggle('dark-mode');
+  }
+  const cardBodies = document.querySelectorAll('.card-body');
+  cardBodies.forEach(function(cardBody) {
+      cardBody.classList.toggle('dark-mode');
+  });
+  
+  // Muda o texto do botão
   const button = document.getElementById('toggleDarkMode');
-  if (body.classList.contains('dark-mode')) {
-    button.textContent = 'Modo Claro';
+  if (document.body.classList.contains('dark-mode')) {
+      button.textContent = 'Modo Claro';
   } else {
-    button.textContent = 'Modo Escuro';
+      button.textContent = 'Modo Escuro';
   }
 });
+
