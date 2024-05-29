@@ -4,7 +4,7 @@ describe("Dashboard Brasil - Testes de Integração", () => {
   });
 
   it(`teste canvas`, () => {
-    cy.get("#casesChart").trigger('keydown', { keyCode: 16 }) 
+    cy.get("#casesChart").trigger('keydown', { keyCode: 16 })
   });
 
   it(`teste titulos inicialização`, () => {
