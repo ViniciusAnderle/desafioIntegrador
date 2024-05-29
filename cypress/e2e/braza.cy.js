@@ -1,6 +1,6 @@
 describe("Dashboard Brasil - Testes de Integração", () => {
   beforeEach(() => {
-    cy.visit("http://127.0.0.1:8080/dashboard_brasil/braza.html");
+    cy.visit("http://127.0.0.1:8080/view/dashboard_brasil/braza.html");
   });
 
   it(`DADO que a aplicação é iniciada
