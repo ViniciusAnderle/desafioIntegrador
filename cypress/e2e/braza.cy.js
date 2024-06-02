@@ -9,6 +9,8 @@ describe("Dashboard Brasil - Testes de Integração", () => {
     cy.get("#totalCases").should("be.visible");
     cy.get("#totalRecovered").should("be.visible");
     cy.get("#totalDeaths").should("be.visible");
+    cy.wait(5000);
+
   });
 
   it(`DADO que a aplicação é iniciada
@@ -34,6 +36,8 @@ describe("Dashboard Brasil - Testes de Integração", () => {
         response.body.deaths.toLocaleString("pt-BR")
       );
     });
+    cy.wait(5000);
+
   });
 
   it(`DADO que a aplicação é iniciada
@@ -54,6 +58,8 @@ describe("Dashboard Brasil - Testes de Integração", () => {
         `Última atualização da API: ${formattedTimestamp}`
       );
     });
+    cy.wait(5000);
+
   });
 
   it(`DADO que a aplicação é iniciada
@@ -71,6 +77,8 @@ describe("Dashboard Brasil - Testes de Integração", () => {
     cy.wait("@getHistoricalData");
 
     cy.get("#dailyCasesChart").should("be.visible");
+    cy.wait(5000);
+
   });
 
   it(`DADO que a aplicação é iniciada
@@ -83,6 +91,8 @@ describe("Dashboard Brasil - Testes de Integração", () => {
     cy.get("#toggleDarkMode").click();
     cy.get("body").should("not.have.class", "dark-mode");
     cy.get("#toggleDarkMode").should("contain", "Modo Escuro");
+    cy.wait(5000);
+
   });
 
   it(`DADO que a aplicação é iniciada
@@ -100,6 +110,8 @@ describe("Dashboard Brasil - Testes de Integração", () => {
     cy.wait("@getHistoricalData");
 
     cy.get("#recoveredVsDeathsChart").should("be.visible");
+    cy.wait(5000);
+
   });
 
   it(`DADO que a aplicação é iniciada
@@ -111,5 +123,5 @@ describe("Dashboard Brasil - Testes de Integração", () => {
     cy.get("h1").should("contain", "Painel COVID-19");
   });
 
-  
+
 });
