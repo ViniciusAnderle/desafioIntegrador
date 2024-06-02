@@ -1,6 +1,6 @@
 describe('Vacinação COVID-19 Dashboard', () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:8080/view/dashboard_vacinas/vac.html');
+        cy.visit('http://172.26.152.65:8080/view/dashboard_vacinas/vac.html');
     });
 
     it('Deve alternar entre modo claro e escuro', () => {

@@ -1,6 +1,6 @@
 describe("Dashboard Brasil - Testes de Integração", () => {
   beforeEach(() => {
-    cy.visit("http://172.32.92.218:8080/view/dashboard_brasil/braza.html");
+    cy.visit("http://172.26.152.65:8080/view/dashboard_brasil/braza.html");
   });
 
   it(`teste canvas`, () => {
@@ -129,7 +129,7 @@ describe("Dashboard Brasil - Testes de Integração", () => {
         DEVE navegar para a página de Dashboard de casos (Dashboard Inicial)`, () => {
     cy.get(".nav-dashboard_inicial").click();
 
-    cy.url().should("include", "/dashboard_inicial.html");
+    cy.url().should("include", "/index.html");
     cy.get("h1").should("contain", "Painel COVID-19");
   });
 
