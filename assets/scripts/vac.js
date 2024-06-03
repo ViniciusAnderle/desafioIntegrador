@@ -1,6 +1,3 @@
-// vac.js
-
-// Função para alternar entre modo claro e escuro
 document.getElementById('toggleDarkMode').addEventListener('click', function () {
     document.body.classList.toggle('dark-mode');
     document.querySelector('.navbar').classList.toggle('dark-mode');
@@ -14,14 +11,12 @@ document.getElementById('toggleDarkMode').addEventListener('click', function () 
     }
 });
 
-// Função assíncrona para obter o timestamp da última atualização da API
 async function getLastUpdatedTimestamp() {
     const response = await fetch('https://disease.sh/v3/covid-19/all');
     const data = await response.json();
     return data.updated;
 }
 
-// Obtém o timestamp da última atualização e atualiza o rodapé da página
 getLastUpdatedTimestamp()
     .then(timestamp => {
         const formattedTimestamp = new Date(timestamp).toLocaleString('pt-BR');
@@ -29,7 +24,6 @@ getLastUpdatedTimestamp()
     })
     .catch(error => console.error('Error:', error));
     document.addEventListener('DOMContentLoaded', function () {
-        // Fetch para obter os dados de vacinação do Brasil
         fetch('https://covid.ourworldindata.org/data/vaccinations/vaccinations.json')
             .then(response => response.json())
             .then(data => {
@@ -79,7 +73,6 @@ getLastUpdatedTimestamp()
             })
             .catch(error => console.error('Erro ao buscar dados:', error));
     
-        // Fetch para obter os dados de vacinação globais
         fetch('https://covid.ourworldindata.org/data/vaccinations/vaccinations.json')
             .then(response => response.json())
             .then(data => {

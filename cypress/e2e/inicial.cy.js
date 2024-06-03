@@ -58,30 +58,22 @@ describe("Dashboard Brasil - Testes de Integração", () => {
         cy.get('body').should('not.have.class', 'dark-mode');
     });
     it('Deve exibir polígonos no mapa com dados de COVID-19 para diferentes países', () => {
-        // Verificar se o mapa existe
         cy.get('#map').should('exist');
 
-        // Aguardar o carregamento dos dados no mapa (ajustar o tempo conforme necessário)
         cy.wait(5000);
 
-        // Verificar se existem elementos de polígono no mapa
         cy.get('.leaflet-interactive').should('have.length.greaterThan', 0);
     });
 
     it('Deve exibir corretamente as informações ao clicar nos polígonos do mapa', () => {
-        // Verificar se o mapa existe
         cy.get('#map').should('exist');
 
-        // Aguardar o carregamento dos dados no mapa (ajustar o tempo conforme necessário)
         cy.wait(5000);
 
-        // Verificar se existem elementos de polígono no mapa
         cy.get('.leaflet-interactive').should('have.length.greaterThan', 0);
 
-        // Simular um clique em um dos polígonos
         cy.get('.leaflet-interactive').first().click();
 
-        // Verificar se a popup com informações aparece
         cy.get('.leaflet-popup-content').should('exist');
         cy.get('.leaflet-popup-content').should('contain.text', 'Casos:');
     });

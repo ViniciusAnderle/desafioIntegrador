@@ -129,7 +129,7 @@ describe("Dashboard Brasil - Testes de Integração", () => {
         DEVE navegar para a página de Dashboard de casos (Dashboard Inicial)`, () => {
     cy.get(".nav-dashboard_inicial").click();
 
-    cy.url().should("include", "/dashboard_inicial.html");
+    cy.url().should("include", "/index.html");
     cy.get("h1").should("contain", "Painel COVID-19");
   });
 

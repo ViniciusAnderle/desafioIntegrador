@@ -1,16 +1,13 @@
-// Função para obter o timestamp da última atualização da API
 async function getLastUpdatedTimestamp() {
   const response = await fetch('https://disease.sh/v3/covid-19/all');
   const data = await response.json();
   return data.updated;
 }
 
-// Função para formatar números
 function formatNumber(num) {
   return num.toLocaleString('pt-BR');
 }
 
-// Fetch para obter o timestamp da última atualização e atualizar o rodapé
 getLastUpdatedTimestamp()
   .then(timestamp => {
     const formattedTimestamp = new Date(timestamp).toLocaleString('pt-BR');
@@ -18,7 +15,6 @@ getLastUpdatedTimestamp()
   })
   .catch(error => console.error('Error:', error));
 
-// Fetch para obter os dados globais da COVID-19 e atualizar os totais no cabeçalho
 fetch('https://disease.sh/v3/covid-19/all')
   .then(response => response.json())
   .then(data => {
@@ -28,7 +24,6 @@ fetch('https://disease.sh/v3/covid-19/all')
   })
   .catch(error => console.error('Error:', error));
 
-// Fetch para obter os dados dos países e exibir os 10 países com mais e menos casos em tabelas
 fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
   .then(response => response.json())
   .then(data => {
@@ -48,7 +43,6 @@ fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allow
   })
   .catch(error => console.error('Error:', error));
 
-// Fetch para obter os dados históricos globais da COVID-19 e exibir gráficos de casos e mortes
 fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
   .then(response => response.json())
   .then(data => {
@@ -87,7 +81,6 @@ fetch('https://disease.sh/v3/covid-19/historical/all?lastdays=all')
   })
   .catch(error => console.error('Error:', error));
 
-// Fetch para obter os dados dos países e exibir um gráfico de barras com os 10 países com mais casos
 fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allowNull=false')
   .then(response => response.json())
   .then(data => {
@@ -119,20 +112,18 @@ fetch('https://disease.sh/v3/covid-19/countries?sort=cases&yesterday=false&allow
   })
   .catch(error => console.error('Error:', error));
 
-// Cria um mapa Leaflet para visualizar os casos de COVID-19 por país
 const map = L.map('map').setView([0, 0], 2);
 const southWest = L.latLng(-90, -180);
 const northEast = L.latLng(900, 180);
 const bounds = L.latLngBounds(southWest, northEast);
 map.setMaxBounds(bounds);
 
-// Se a posição inicial do mapa estiver fora dos limites, ajuste-a para dentro
 map.on('drag', function () {
   map.panInsideBounds(bounds, { animate: false });
 });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  minZoom: 2, // Defina o zoom mínimo permitido
+  minZoom: 2, 
 }).addTo(map);
 
 
@@ -170,10 +161,8 @@ fetch('https://disease.sh/v3/covid-19/countries')
   .catch(error => console.error('Error:', error));
 
   document.getElementById('toggleDarkMode').addEventListener('click', function () {
-    // Alterna a classe dark-mode no body
     document.body.classList.toggle('dark-mode');
     
-    // Seleciona o navbar e alterna suas classes
     const navbar = document.querySelector('.navbar');
     navbar.classList.toggle('dark-mode');
     navbar.classList.toggle('navbar-light');
@@ -185,19 +174,16 @@ fetch('https://disease.sh/v3/covid-19/countries')
         container.classList.toggle('dark-mode');
     }
     
-    // Alterna a classe dark-mode no footer, se existir
     const footer = document.querySelector('footer');
     if (footer) {
         footer.classList.toggle('dark-mode');
     }
 
-    // Alterna a classe dark-mode em todas as card-body, se existir
     const cardBodies = document.querySelectorAll('.card-body');
     cardBodies.forEach(function(cardBody) {
         cardBody.classList.toggle('dark-mode');
     });
 
-    // Alterna a classe dark-mode em todas as tabelas, se existir
     const tables = document.querySelectorAll('.table');
     tables.forEach(function(table) {
         table.classList.toggle('dark-mode');

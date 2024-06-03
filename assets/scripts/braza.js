@@ -1,11 +1,9 @@
-// Função para obter dados da API
 async function getData() {
   const response = await fetch('https://disease.sh/v3/covid-19/countries/Brazil');
   const data = await response.json();
   return data;
 }
 
-// Função para criar os cards com os totais
 async function updateCards() {
   const data = await getData();
   if (document) {
@@ -16,21 +14,18 @@ async function updateCards() {
 }
 
 
-// Função para obter o timestamp da última atualização da API
 async function getLastUpdatedTimestamp() {
   const response = await fetch('https://disease.sh/v3/covid-19/all');
   const data = await response.json();
   return data.updated;
 }
 
-// Função para obter dados históricos de casos no Brasil
 async function getDailyCasesData() {
   const response = await fetch('https://disease.sh/v3/covid-19/historical/Brazil?lastdays=all');
   const data = await response.json();
   return data.timeline.cases;
 }
 
-// Função para obter dados históricos de casos no Brasil
 async function getHistoricalData() {
   const response = await fetch('https://disease.sh/v3/covid-19/historical/Brazil?lastdays=all');
   const data = await response.json();
@@ -38,7 +33,6 @@ async function getHistoricalData() {
 }
 
 
-// Função para criar o gráfico de taxa de crescimento diário de casos
 async function createDailyCasesChart() {
   const historicalData = await getDailyCasesData();
   const dates = Object.keys(historicalData).map(date => new Date(date));
@@ -82,19 +76,8 @@ async function createDailyCasesChart() {
 
 
 
-
-
-// Função para obter os dados de casos por faixa etária do Brasil
-
-
-// Função para criar o gráfico de pizza de casos por faixa etária
 async function createCasesByAgeChart() {
-  // Obter os dados de casos por faixa etária do Brasil
 
-  // Formatar os dados para o formato esperado pelo Chart.js
-
-
-  // Criar o gráfico de pizza
   const ctx = document.getElementById('casesByAgeChart').getContext('2d');
   new Chart(ctx, {
     type: 'pie',
@@ -140,7 +123,6 @@ async function createCasesByAgeChart() {
 
 
 
-// Função para criar o gráfico de casos recuperados versus mortes
 async function createRecoveredVsDeathsChart() {
   const historicalData = await getHistoricalData();
   const dates = Object.keys(historicalData.cases).map(date => new Date(date));
@@ -189,7 +171,6 @@ async function createRecoveredVsDeathsChart() {
 
 
 
-// Fetch para obter o timestamp da última atualização e atualizar o rodapé
 getLastUpdatedTimestamp()
   .then(timestamp => {
     const formattedTimestamp = new Date(timestamp).toLocaleString('pt-BR');
@@ -199,11 +180,9 @@ getLastUpdatedTimestamp()
 
 
 
-// Fetch para obter dados históricos de casos e mortes no Brasil
 fetch('https://disease.sh/v3/covid-19/historical/Brazil?lastdays=all')
   .then(response => response.json())
   .then(data => {
-    // Cria dados para o gráfico de casos
     const casesData = {
       labels: Object.keys(data.timeline.cases).map(date => new Date(date).toLocaleDateString('pt-BR')),
       datasets: [{
@@ -213,7 +192,6 @@ fetch('https://disease.sh/v3/covid-19/historical/Brazil?lastdays=all')
         borderWidth: 1
       }]
     };
-    // Cria dados para o gráfico de mortes
     const deathsData = {
       labels: Object.keys(data.timeline.deaths).map(date => new Date(date).toLocaleDateString('pt-BR')),
       datasets: [{
@@ -226,39 +204,35 @@ fetch('https://disease.sh/v3/covid-19/historical/Brazil?lastdays=all')
 
 
 
-    // Configurações para aumentar a distância entre as datas 
     const options = {
       scales: {
         xAxes: [{
           type: 'time',
           time: {
-            unit: 'month', // Aumenta a distância entre as datas para exibir mensalmente
-            tooltipFormat: 'DD/MM/YYYY' // Formato do tooltip
+            unit: 'month',
+            tooltipFormat: 'DD/MM/YYYY' 
           }
         }]
       }
     };
 
 
-    // Obtém os contextos dos gráficos
     const casesCtx = document.getElementById('casesChart').getContext('2d');
     const deathsCtx = document.getElementById('deathsChart').getContext('2d');
 
 
-    // Cria os gráficos de linha com as opções configuradas
     new Chart(casesCtx, {
       type: 'line',
       data: casesData,
-      options: options // Adiciona as opções ao gráfico de casos
+      options: options 
     });
     new Chart(deathsCtx, {
       type: 'line',
       data: deathsData,
-      options: options // Adiciona as opções ao gráfico de mortes
+      options: options 
     });
 
 
-    // Chama a função para atualizar os totais
     updateCards();
   })
   .catch(error => console.error('Error:', error));
@@ -274,13 +248,11 @@ document.getElementById('toggleDarkMode').addEventListener('click', function () 
   document.body.classList.toggle('dark-mode');
   document.querySelector('.navbar').classList.toggle('dark-mode');
   
-  // Verifica se existe um container e aplica a classe de modo escuro
   const container = document.querySelector('.container');
   if (container) {
       container.classList.toggle('dark-mode');
   }
   
-  // Verifica se existe um footer e aplica a classe de modo escuro
   const footer = document.querySelector('footer');
   if (footer) {
       footer.classList.toggle('dark-mode');
@@ -290,7 +262,6 @@ document.getElementById('toggleDarkMode').addEventListener('click', function () 
       cardBody.classList.toggle('dark-mode');
   });
   
-  // Muda o texto do botão
   const button = document.getElementById('toggleDarkMode');
   if (document.body.classList.contains('dark-mode')) {
       button.textContent = 'Modo Claro';
