@@ -1,6 +1,6 @@
 describe("Dashboard Brasil - Testes de Integração", () => {
   beforeEach(() => {
-    cy.visit("http://172.32.92.218:8080/view/dashboard_brasil/braza.html");
+    cy.visit("http://172.26.152.65:8080/view/dashboard_brasil/braza.html");
   });
 
   it(`teste canvas`, () => {

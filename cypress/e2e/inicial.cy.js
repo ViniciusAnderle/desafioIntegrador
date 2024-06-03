@@ -1,6 +1,6 @@
 describe("Dashboard Brasil - Testes de Integração", () => {
     beforeEach(() => {
-        cy.visit("http://127.0.0.1:8080/index.html");
+        cy.visit("http://172.26.152.65:8080/index.html");
     });
 
     it('Deve exibir a última atualização da API', () => {
